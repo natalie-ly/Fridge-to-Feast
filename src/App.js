@@ -41,11 +41,11 @@ const App = () => {
       }
     }
 
-    try{
-      const response = await fetch('https://ingredientsalchemy.netlify.app/completions', options);
+    try {
+      const response = await fetch('/.netlify/functions/completions', options);
       const data = await response.json();
       setMessage(data.choices[0].message);
-    } catch(error){
+    } catch (error) {
       console.error(error);
     }
   }
