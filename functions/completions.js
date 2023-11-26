@@ -1,21 +1,11 @@
-// Import required modules
-const express = require('express');
-const cors = require('cors');
-const app = express();
+const fetch = require('node-fetch');
 
-// Enable CORS for all routes
-app.use(cors());
-
-// Your serverless function logic
-app.post('/completions', async (req, res) => {
+exports.handler = async function (event, context) {
   try {
-    // Extract data from the request body
-    const requestData = req.body;
+    const requestData = JSON.parse(event.body);
 
-    // Example: Assuming requestData.message contains the required data
     const gpt_input = `Only use items in this list that are food and return a recipe with step-by-step instructions that use those ingredients: ${requestData.message}`;
 
-    // Set up options for the API call
     const options = {
       method: "POST",
       headers: {
@@ -29,18 +19,18 @@ app.post('/completions', async (req, res) => {
       })
     };
 
-    // Make API call to OpenAI
     const response = await fetch('https://api.openai.com/v1/chat/completions', options);
     const data = await response.json();
 
-    // Respond with success and the data received
-    res.status(200).json(data);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data),
+    };
   } catch (error) {
-    // Handle errors and respond with an error status code
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Internal Server Error' }),
+    };
   }
-});
-
-// Export the Express app as the handler for Netlify
-exports.handler = app;
+};
