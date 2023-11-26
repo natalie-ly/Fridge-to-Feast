@@ -94,7 +94,7 @@ const App = () => {
       </section>
       <section className = "main-section">
         {/* {!currentTitle && <h1>RecipeGPT</h1>} */}
-        <img src='/recipe-gpt-logo.png' alt="recipe-gpt logo"/>
+        <img src='/fridgetofeast.png' alt="Fridge to Feast logo"/>
         <p>Submit a photo of your fridge/pantry</p>
         <ul className = "feed">
           {currentChat.map((chatMessage, index) => <li key={index}>
