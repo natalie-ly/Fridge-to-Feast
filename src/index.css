@@ -161,8 +161,8 @@ input:focus {
   /* background-color: hsla(193, 95%, 68%, 0.788); */
   background-color: rgba(255, 255, 255, 0.05);
   /* width: 100%; */
-  height: auto;
-  padding: 15px;
+  height: 200px;
+  padding: 20px;
   margin: 20px 0;
 }
 
